@@ -128,3 +128,11 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# MongoDB
+data/
+*.mongodb
+*.mongo
+mongod.lock
+mongod.pid
+mongod-*.log

@@ -1,6 +1,6 @@
 # LearnDash App
 
-This is the frontend application for LearnDash, a Learning Management System (LMS) that integrates with the [LearnDash API](https://github.com/ztancinco/learndashapp) to manage courses, users, and other resources.
+This is the frontend application for LearnDash, a Learning Management System (LMS) that integrates with the [LearnDash API](https://github.com/ztancinco/learndashapi) to manage courses, users, and other resources.
 
 ## Installation
 

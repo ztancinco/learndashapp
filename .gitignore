@@ -136,3 +136,4 @@ data/
 mongod.lock
 mongod.pid
 mongod-*.log
+.env.local

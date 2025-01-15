@@ -130,3 +130,8 @@ p {
 .rounded {
   border-radius: 8px;
 }
+
+/* Example for NProgress customization */
+#nprogress .bar {
+  background: #29d;
+}

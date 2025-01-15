@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Sidebar from './components/SideBar';
 import './styles/globals.css';
+import 'nprogress/nprogress.css';
 
 interface LayoutProps {
   children: ReactNode;

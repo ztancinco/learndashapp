@@ -8,7 +8,7 @@ interface CourseListProps {
   courses: Course[];
 }
 
-export default function CourseList({ courses }: CourseListProps) {
+export default function CourseList({ courses = [] }: CourseListProps) {
   const router = useRouter();
   const { deleteCourse } = useCourses();
 
@@ -57,13 +57,21 @@ export default function CourseList({ courses }: CourseListProps) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {courses.map((course) => (
-              <CoursesListRow
-                key={course.id || course.title}
-                course={course}
-                onDelete={deleteCourse}
-              />
-            ))}
+            {Array.isArray(courses) && courses.length > 0 ? (
+              courses.map((course) => (
+                <CoursesListRow
+                  key={course.id || course.title}
+                  course={course}
+                  onDelete={deleteCourse}
+                />
+              ))
+            ) : (
+              <tr>
+                <td colSpan={5} className="text-center py-4">
+                  No courses available
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

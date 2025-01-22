@@ -1,23 +1,23 @@
-import { Course } from '@/app/api/interfaces/Course';
-import CoursesListRow from './CoursesListRow';
+import { User } from '@/app/api/interface/user';
+import UserListRow from './ListRow';
 import { PlusCircleIcon } from '@heroicons/react/24/solid';
 import { useRouter } from 'next/navigation';
-import useCourses from '@/app/hooks/useCourses';
+import useUsers from '@/app/hooks/useUsers';
 
-interface CourseListProps {
-  courses: Course[];
+interface UsersListProps {
+  users: User[];
 }
 
-export default function CourseList({ courses = [] }: CourseListProps) {
+export default function List({ users }: UsersListProps) {
   const router = useRouter();
-  const { deleteCourse } = useCourses();
+  const { deleteUser } = useUsers();
 
   return (
     <section className="mt-8 bg-white p-6 rounded-lg shadow">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-800">Courses</h2>
+        <h2 className="text-2xl font-bold text-teal-800">Users</h2>
         <button
-          onClick={() => router.push('/courses/create')}
+          onClick={() => router.push('/users/create')}
           className="flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition focus:outline-none focus:ring-4 focus:ring-blue-500"
         >
           <PlusCircleIcon className="h-5 w-5" />
@@ -31,19 +31,13 @@ export default function CourseList({ courses = [] }: CourseListProps) {
                 scope="col"
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
-                Course Title
+                Fullname
               </th>
               <th
                 scope="col"
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
-                Instructor
-              </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Enrolled Students
+                Email
               </th>
               <th
                 scope="col"
@@ -57,21 +51,13 @@ export default function CourseList({ courses = [] }: CourseListProps) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {Array.isArray(courses) && courses.length > 0 ? (
-              courses.map((course) => (
-                <CoursesListRow
-                  key={course.id || course.title}
-                  course={course}
-                  onDelete={deleteCourse}
-                />
-              ))
-            ) : (
-              <tr>
-                <td colSpan={5} className="text-center py-4">
-                  No courses available
-                </td>
-              </tr>
-            )}
+            {users.map((user) => (
+              <UserListRow
+                key={user.id}
+                user={user}
+                onDelete={deleteUser}
+              />
+            ))}
           </tbody>
         </table>
       </div>

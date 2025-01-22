@@ -1,19 +1,6 @@
 version: '3.8'
 
 services:
-  mongodb:
-    image: mongo:latest
-    container_name: mongodb
-    ports:
-      - "27017:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: secret
-    volumes:
-      - ./data/db:/data/db
-    networks:
-      - lms-network
-
   learn-dash-app:
     image: node:latest
     container_name: learn-dash-app
@@ -25,8 +12,6 @@ services:
     command: npm run dev
     networks:
       - lms-network
-    depends_on:
-      - mongodb
 
 networks:
   lms-network:

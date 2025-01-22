@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className="text-gray-300">
-      <div className="py-4">
+      <div className="py-4" style={{ paddingLeft: '100px' }}>
         <p className="text-center text-sm text-gray-500">
           © 2025 Learn Dash. All rights reserved.
         </p>

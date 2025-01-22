@@ -2,6 +2,7 @@
 
 import CourseForm from '@/app/components/form/course/CourseForm';
 import useCourses from '../../hooks/useCourses';
+import DashLearnLayout from '@/app/components/DashLearnLayout';
 import { useRouter } from 'next/navigation';
 
 export default function CreateCoursesPage() {
@@ -13,10 +14,10 @@ export default function CreateCoursesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <DashLearnLayout>
+      <div className="max-w-8xl mx-auto px-2">
         <CourseForm router={router} />
       </div>
-    </div>
+    </DashLearnLayout>
   );
 }

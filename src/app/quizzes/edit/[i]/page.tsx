@@ -8,7 +8,7 @@ import { useRouter, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Course } from '@/app/api/interface/course';
 
-export default function EditCoursePage() {
+export default function EdidtQuizPage() {
   const params = useParams();
   const router = useRouter();
   

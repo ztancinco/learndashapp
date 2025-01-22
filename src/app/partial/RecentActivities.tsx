@@ -15,16 +15,21 @@ export default function RecentActivities() {
   };
 
   return (
-    <section className="bg-white p-6 rounded-lg shadow-sm mb-10">
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">Recent Activities</h2>
-      <ul className="divide-y divide-gray-200">
+    <section className="bg-white p-6 rounded-lg shadow-lg mb-10">
+      <h2 className="text-2xl font-semibold text-teal-800 mb-6">Recent Activities</h2>
+      <ul className="space-y-4">
         {activities.map((activity, index) => (
-          <li key={index} className="py-4 flex justify-between">
+          <li
+            key={index}
+            className="flex justify-between items-center p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition duration-200 ease-in-out transform hover:scale-105"
+          >
             <div>
               <p className="text-gray-700 font-medium">{activity.description}</p>
               <p className="text-gray-500 text-sm">{activity.time}</p>
             </div>
-            <span className={`${statusColorClasses[activity.statusColor]} text-sm font-semibold`}>
+            <span
+              className={`${statusColorClasses[activity.statusColor]} text-sm font-semibold uppercase`}
+            >
               {activity.status}
             </span>
           </li>

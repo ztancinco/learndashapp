@@ -1,25 +1,26 @@
-import { Course } from '@/app/api/interfaces/Course';
+import { Course } from '@/app/api/interface/course';
 import { useRouter } from 'next/navigation';
 
 interface CourseProps {
   course: Course;
-  onDelete: (id: string) => void;
+  onDelete: (id: number) => void;
 }
 
-export default function CoursesListRow({ course, onDelete }: CourseProps) {
+export default function ListRow({ course, onDelete }: CourseProps) {
   const router = useRouter();
 
   const handleEditClick = () => {
-    router.push(`/users/edit/${course.id}`);
+    router.push(`/courses/edit/${course.id}`);
   };
 
   const handleDeleteClick = async () => {
-    if (confirm(`Are you sure you want to delete this user "${course.title}"?`)) {
+    if (course.id === undefined || isNaN(Number(course.id))) return;
+    if (confirm(`Are you sure you want to delete the course "${course.title}"?`)) {
       try {
         await onDelete(course.id);
       } catch (err) {
-        console.error('Failed to delete user:', err);
-        alert('Failed to delete user. Please try again.');
+        console.error('Failed to delete course:', err);
+        alert('Failed to delete course. Please try again.');
       }
     }
   };
@@ -31,9 +32,6 @@ export default function CoursesListRow({ course, onDelete }: CourseProps) {
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="text-sm text-gray-700">{course.instructor}</div>
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-gray-700">{course.enrolled}</div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
         <span

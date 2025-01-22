@@ -1,49 +1,47 @@
-import { Course } from '@/app/api/interfaces/Course';
+import { User } from '@/app/api/interface/user';
 import { useRouter } from 'next/navigation';
 
-interface CourseProps {
-  course: Course;
-  onDelete: (id: string) => void;
+interface UserListRowProps {
+  user: User;
+  onDelete: (id: number) => void;
 }
 
-export default function CoursesListRow({ course, onDelete }: CourseProps) {
+export default function UserListRow({ user, onDelete }: UserListRowProps) {
   const router = useRouter();
 
   const handleEditClick = () => {
-    router.push(`/courses/edit/${course.id}`);
+    router.push(`/users/edit/${user.id}`);
   };
 
   const handleDeleteClick = async () => {
-    if (confirm(`Are you sure you want to delete the course "${course.title}"?`)) {
+    const fullName = `${user.first_name} ${user.last_name}`;
+    if (confirm(`Are you sure you want to delete this user "${fullName}"?`)) {
       try {
-        await onDelete(course.id);
+        await onDelete(user.id);
       } catch (err) {
-        console.error('Failed to delete course:', err);
-        alert('Failed to delete course. Please try again.');
+        console.error('Failed to delete user:', err);
+        alert('Failed to delete user. Please try again.');
       }
     }
   };
 
   return (
-    <tr key={course.id || course.title}>
+    <tr key={user.id}>
       <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm font-medium text-gray-900">{course.title}</div>
+        <div className="text-sm font-medium text-gray-900">{user.first_name} {user.last_name}</div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-gray-700">{course.instructor}</div>
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-gray-700">{course.enrolled}</div>
+        <div className="text-sm text-gray-700">{user.email}</div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
         <span
           className={`px-3 py-1 inline-flex text-sm font-semibold rounded-full ${
-            course.status === 'Active'
+            user.is_active
               ? 'bg-green-100 text-green-800'
               : 'bg-yellow-100 text-yellow-800'
           }`}
         >
-          {course.status}
+          {user.is_active ? 'Active' : 'Inactive'}
         </span>
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-right">

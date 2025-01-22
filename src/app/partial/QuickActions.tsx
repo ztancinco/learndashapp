@@ -24,7 +24,7 @@ export default function QuickActions() {
       label: 'Manage Users', 
       icon: <UserGroupIcon className="h-5 w-5 mr-2" />, 
       color: 'yellow', 
-      onClick: () => console.log('Manage Users') 
+      onClick: () => router.push('/users') 
     },
   ];
 
@@ -36,7 +36,7 @@ export default function QuickActions() {
 
   return (
     <section className="bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Quick Actions</h2>
+      <h2 className="text-2xl font-bold text-teal-800 mb-6">Quick Actions</h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {actions.map((action, index) => (
           <button
